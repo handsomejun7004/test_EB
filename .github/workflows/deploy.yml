@@ -11,13 +11,8 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    # Add a step to install dependencies if needed
-    - name: Install dependencies
-      run: npm install
-
-    # Modify the deployment package generation step
     - name: Generate deployment package
-      run: zip -r deploy.zip package.json server.js node_modules
+      run: zip -r deploy.zip package.json server.js
 
     - name: Deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v16
