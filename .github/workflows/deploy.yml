@@ -1,0 +1,26 @@
+name: Deploy to Elastic Beanstalk
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip .
+
+    - name: Deploy to Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v16
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        application_name: junho-eb-app
+        environment_name: Junho-eb-app-env-445
+        region: ap-northeast-2
+        version_label: ${{ github.sha }}
+        deployment_package: deploy.zip
