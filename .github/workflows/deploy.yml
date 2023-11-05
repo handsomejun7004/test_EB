@@ -24,4 +24,3 @@ jobs:
         region: ap-northeast-2
         version_label: ${{ github.sha }}
         deployment_package: deploy.zip
-        timeout: 180 # Set timeout to 3 minutes (180 seconds)
