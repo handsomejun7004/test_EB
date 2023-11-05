@@ -11,7 +11,6 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    # Modify the deployment package generation step
     - name: Generate deployment package
       run: zip -r deploy.zip package.json server.js
 
